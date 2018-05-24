@@ -13,11 +13,6 @@ Eliminar repositorios remotos
 $ git remote remove <remote_alias>`
 ```
 
-Eliminar repositorios remotos
-```sh
-$ git remote remove <remote_alias>`
-```
-
 Publicar en un repositorio remoto especifico
 ```sh
 $ git push <remote> <branch>`
@@ -41,7 +36,7 @@ $ git branch
 ```
 Merge entre branchs
 ```sh
-$ git merge master name-branch
+$ git merge name-branch
 ```
  
 Eliminar branchs
