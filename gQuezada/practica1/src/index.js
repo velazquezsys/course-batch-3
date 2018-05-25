@@ -16,8 +16,13 @@
             employees.push(e);
         });
 
+
+        for (let employee of employees){
+            document.querySelector('#employees tbody').appendChild(employee.getHTML());
+            console.log(employee.getHTML());
+        }
+        
         console.log(employees);
 
-        console.log(content);
     })();
 })();
