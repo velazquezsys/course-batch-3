@@ -1,23 +1,17 @@
 const url = 'https://randomuser.me/api/?results=2';
 
-class Empleados {
+class Main {
     contructor() {
     }
     
-    getEmpleados() {
-        const http = new Http();
-        console.log('hello');
-        http.get(url).then((response)=> {
-            console.log('response: ', response);
-            this.printEmpleados(response.results);    
+    printEmpleados() {
+        const empleados = new Empleados();
+        empleados.getEmpleados().then((empleados) => {
+            this.generarTabla(empleados);
         }, (error) => {
-            console.log('error: ', error);
             alert('Error al obtener empleados');
+            console.error(error);
         });
-    }
-
-    printEmpleados(listaEmpleados) {
-        this.generarTabla(listaEmpleados);
     }
 
     generarTabla(listaEmpleados) {
@@ -46,6 +40,6 @@ class Empleados {
 
 
 document.getElementById('get-empleados').addEventListener('click', () => {
-    const empleados = new Empleados();
-    empleados.getEmpleados();
+    const main = new Main();
+    main.printEmpleados();
 });
