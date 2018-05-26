@@ -1,7 +1,7 @@
 'use strict';
 
 /* DropDown */
-const dropdown = (elementDiv, mapElementos) => {
+const dropdown = (elementDiv, arrayElementos) => {
     const widget = elementDiv;
 
     const eventElementDropdown = (evento) => {
@@ -9,7 +9,7 @@ const dropdown = (elementDiv, mapElementos) => {
         eventDropdown();
     };
     const eventDropdown = () =>{
-        console.log('evento');
+        
         if(widget.classList.contains('dropdown')){
             widget.classList.remove('dropdown');
             widget.classList.add('dropdown-active');
@@ -19,10 +19,10 @@ const dropdown = (elementDiv, mapElementos) => {
         }
     };
     widget.innerHTML = '';
-    const label = document.createElement("span");
+    const label = document.createElement('span');
     label.innerText = 'Seleccionar';
-    const areaElementos = document.createElement("ul");
-    for(const elem of mapElementos){
+    const areaElementos = document.createElement('ul');
+    for(const elem of arrayElementos){
         const elemento = document.createElement('li');
         elemento.innerText = elem.name;
         elemento.addEventListener('click', eventElementDropdown);
@@ -37,7 +37,7 @@ const dropdown = (elementDiv, mapElementos) => {
 /* Tooltip */
 const tooltip = (elementDiv) => {
     const widget = elementDiv;
-    const label = document.createElement("span");
+    const label = document.createElement('span');
     label.innerText = widget.getAttribute('data-help');
     widget.addEventListener('mouseover', () => {
         widget.classList.add('tooltip');
@@ -55,11 +55,19 @@ const tooltip = (elementDiv) => {
 const modal = (elementDiv, opcionesModal) => {
 
     const widget = elementDiv;
+    let dentroModal = false;
 
     const modalHeader = document.createElement('div');
     const modalBody = document.createElement('div');
     const modalFooter = document.createElement('div');
+    const btnCerrar = document.createElement('button');
+    btnCerrar.innerText = 'Cerrar';
 
+    const eventModalCerrar = () =>{
+        widget.classList.add('modal');
+        widget.classList.remove('modal-active');
+    };
+    btnCerrar.addEventListener('click', eventModalCerrar);
     const estructuraModal = {
         modalHeader:modalHeader, modalBody:modalBody,
         modalFooter:modalFooter
@@ -72,10 +80,22 @@ const modal = (elementDiv, opcionesModal) => {
     widget.appendChild(modalHeader);
     widget.appendChild(modalBody);
     widget.appendChild(modalFooter);
+    widget.appendChild(btnCerrar);
 
     widget.classList.add('modal');
-
+    widget.addEventListener('pointerover', () => {
+        dentroModal = true;
+    });
+    widget.addEventListener('pointerleave', () => {
+        dentroModal = false;
+    });
+    document.addEventListener('click', (event) => {
+        if(!dentroModal && event.target.id !== 'btnActivaModal'){
+            eventModalCerrar();
+        }
+    });
 };
+
 
 /* prueba dropdown */
 const itemDropdown = document.getElementById('dropdown');
@@ -91,3 +111,18 @@ dropdown(itemDropdown, elementosDropdown);
 /* prueba tooltip */
 const itemTooltip = document.getElementById('tooltip');
 tooltip(itemTooltip);
+
+
+/* prueba Modal */
+const btnActivaModal = document.getElementById('btnActivaModal');
+const itemModal = document.getElementById('modal');
+const opcionesModal = [
+    {llave: 'modalHeader', valor:'<h3>Titulo del modal</h3>'},
+    {llave: 'modalBody', valor:'<p>Este es el contenido de prueba</p>'},
+    {llave: 'modalFooter', valor:'<p>Footer</p>'}
+];
+modal(itemModal, opcionesModal);
+btnActivaModal.addEventListener('click', () => {
+    itemModal.classList.remove('modal');
+    itemModal.classList.add('modal-active');
+});
