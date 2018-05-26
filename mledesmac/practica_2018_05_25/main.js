@@ -24,34 +24,45 @@ const showDivSelector = () =>{
 
 const showDivModal = () => {
     let modalHTML = document.getElementById("modalWindow");
-    flagModal = true;
+
     modalHTML.style.display = 'block';
 
+    flagModal = true;
 };
 
 const closeModal = () => {
     let modalHTML = document.getElementById("modalWindow");
 
     modalHTML.style.display = 'none';
+    flagModal = false;
 };
 
-
-const closeModalBody = () => {
-    let modalHTML = document.getElementById("modalWindow");
-    alert('');
-    if(flagModal === true)
-        modalHTML.style.display = 'none';
-};
 
 const showToolTip = () => {
     let toolTipHTML = document.getElementById('toolTip');
 
-    if(toolTipHTML.style.display === 'none')
+    if (toolTipHTML.style.display === 'none')
         toolTipHTML.style.display = 'block';
     else
         toolTipHTML.style.display = 'none';
+}
 
-};
+
+window.addEventListener("click", function(evt) {
+    const flyoutElement = document.getElementById('modalWindow');
+    const buttonElement = document.getElementById('modalSection');
+    if(flyoutElement.contains(evt.target)){
+        console.log('dentro')
+    }else{
+        if(buttonElement.contains(evt.target)){
+            showDivModal();
+        }else{
+            closeModal();
+        }
+    }
+
+});
+
 
 // Listener Event
 selectHTML.addEventListener('click', showDivSelector);
@@ -60,4 +71,3 @@ closeHTML.addEventListener('click', closeModal);
 closeButtonHTML.addEventListener('click', closeModal);
 helpHTML.addEventListener('mouseover', showToolTip);
 helpHTML.addEventListener('mouseout', showToolTip);
-//document.body.addEventListener('click',closeModalBody, false);
