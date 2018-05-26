@@ -1,55 +1,56 @@
-"use strict";
+'use strict';
 
 // Variable section
-let selectHTML = document.getElementById("selectSection");
-let buttonHTML = document.getElementById("modalSection");
-let closeHTML = document.getElementById("closeModal");
-let closeButtonHTML  = document.getElementById("closeButtonModal");
-let helpHTML = document.getElementById("helpSection");
+const selectHTML = document.getElementById('selectSection');
+const buttonHTML = document.getElementById('modalSection');
+const closeHTML = document.getElementById('closeModal');
+const closeButtonHTML = document.getElementById('closeButtonModal');
+const helpHTML = document.getElementById('helpSection');
 let flagModal = false;
 
 /* Custom text for the modal*/
-document.getElementById('titleModal').innerHTML = 'Modal con título';
+document.getElementById('titleModal').innerHTML = 'ssss';
 document.getElementById('bodyModal').innerHTML = 'Cuerpo de modal';
 document.getElementById('footerModal').innerHTML = 'Footer del modal';
 
 // Functions section
-const showDivSelector = () =>{
-    let optionHTML = document.getElementById("optionSection");
-    if(optionHTML.style.display === 'none')
+const showDivSelector = () => {
+    const optionHTML = document.getElementById('optionSection');
+    if (optionHTML.style.display === 'none') {
         optionHTML.style.display = 'block';
-    else
+    }
+    else {
         optionHTML.style.display = 'none';
+    }
 };
 
 const showDivModal = () => {
-    let modalHTML = document.getElementById("modalWindow");
+    let modalHTML = document.getElementById('modalWindow');
     flagModal = true;
     modalHTML.style.display = 'block';
-
 };
 
 const closeModal = () => {
-    let modalHTML = document.getElementById("modalWindow");
-
+    const modalHTML = document.getElementById("modalWindow");
     modalHTML.style.display = 'none';
 };
 
 
 const closeModalBody = () => {
-    let modalHTML = document.getElementById("modalWindow");
-    alert('');
-    if(flagModal === true)
+    let modalHTML = document.getElementById('modalWindow');
+    if (flagModal === true)
         modalHTML.style.display = 'none';
 };
 
 const showToolTip = () => {
     let toolTipHTML = document.getElementById('toolTip');
 
-    if(toolTipHTML.style.display === 'none')
+    if (toolTipHTML.style.display === 'none'){
         toolTipHTML.style.display = 'block';
-    else
+    } else{
         toolTipHTML.style.display = 'none';
+    }
+
 
 };
 
@@ -60,4 +61,4 @@ closeHTML.addEventListener('click', closeModal);
 closeButtonHTML.addEventListener('click', closeModal);
 helpHTML.addEventListener('mouseover', showToolTip);
 helpHTML.addEventListener('mouseout', showToolTip);
-//document.body.addEventListener('click',closeModalBody, false);
+// @todo Add other event listener document.body.addEventListener('click',closeModalBody, false);
