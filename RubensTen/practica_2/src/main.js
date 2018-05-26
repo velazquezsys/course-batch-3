@@ -3,7 +3,6 @@ class Main {
     }
     
     loadContentByLanguage(language) {
-        console.log('load called');
         const getData = new GetData();
         getData.getDataByLanguaje(language).then((data) => {
             this.makeView(data);
@@ -14,7 +13,6 @@ class Main {
     }
 
     makeView(content) {
-        console.log('content: ', content);
         this.makeHeader(content.header);
         this.makePosts(content.postList);
         this.makeFooter(content.footer);
@@ -63,7 +61,7 @@ class Main {
 }
 
 
-
+// Load initial content
 (() => {
     const main = new Main();
     document.getElementById('spanish').addEventListener('click', () => {
