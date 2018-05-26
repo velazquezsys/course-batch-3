@@ -1,49 +1,23 @@
-'use strict';
+"use strict";
+
+var setLanguage = function setLanguage(language) {
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", "data/" + language + ".json");
+    xhr.onload = function () {
+        if (xhr.status >= 200 && xhr.status < 300) {
+            console.log(xhr.response);
+            var response = JSON.parse(xhr.response);
+            var template = "\n                <nav class=\"navbar navbar-expand-lg navbar-light bg-light\">\n                    <a class=\"navbar-brand\" href=\"#\">" + response.header + "</a>\n                    <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n                        <span class=\"navbar-toggler-icon\"></span>\n                    </button>\n                    \n                    <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\n                        <ul class=\"navbar-nav mr-auto\">\n                        <li class=\"nav-item active\">\n                            <a class=\"nav-link\" href=\"#\">" + response.nav[0] + "<span class=\"sr-only\">(current)</span></a>\n                        </li>\n                        <li class=\"nav-item\">\n                            <a class=\"nav-link\" href=\"#\">" + response.nav[1] + "</a>\n                        </li>\n                        </ul>\n                        <form class=\"form-inline my-2 my-lg-0\">\n                            <select name=\"idioma\" id=\"idioma\" onchange=\"setLanguage(this.value)\">\n                                <option value=\"es\">Espa\xF1ol</option>\n                                <option value=\"en\">Ingl\xE9s</option>\n                            </select>\n                        </form>\n                    </div>\n                </nav>\n\n                <section class=\"body\">\n                    <div class=\"container\">\n                        <div class=\"row\">\n                            <div class=\"col\">\n                                    <div class=\"card\">\n                                        <div class=\"card-body\">\n                                            <h5 class=\"card-title\">" + response.title + "</h5>\n                                            <p class=\"card-text\">" + response.content + "</p>\n                                        </div>\n                                    </div>\n                            </div>\n                        </div>\n                        <div class=\"row\">\n                            <div class=\"col\">\n                                    <div class=\"alert alert-light\" role=\"alert\">\n                                        " + response.comments[0] + "\n                                    </div>\n                                    <div class=\"alert alert-light\" role=\"alert\">\n                                        " + response.comments[1] + "\n                                    </div>\n                            </div>\n                        </div>\n                    </div>\n                </section>\n            ";
+            var body = document.querySelector('body');
+            body.innerHTML = template;
+        } else {
+            console.log(xhr.statusText);
+        }
+    };
+
+    xhr.send();
+};
 
 (function () {
-    (async function () {
-        var rawResponse = await fetch('https://randomuser.me/api/', {
-            method: 'GET',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            }
-        });
-        var content = await rawResponse.json();
-
-        var employees = [];
-
-        content.results.forEach(function (element) {
-            var e = new Employee(element.name.first, element.email, element.phone, element.cell, element.login.sha256);
-            employees.push(e);
-        });
-
-        var _iteratorNormalCompletion = true;
-        var _didIteratorError = false;
-        var _iteratorError = undefined;
-
-        try {
-            for (var _iterator = employees[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-                var employee = _step.value;
-
-                document.querySelector('#employees tbody').appendChild(employee.getHTML());
-                console.log(employee.getHTML());
-            }
-        } catch (err) {
-            _didIteratorError = true;
-            _iteratorError = err;
-        } finally {
-            try {
-                if (!_iteratorNormalCompletion && _iterator.return) {
-                    _iterator.return();
-                }
-            } finally {
-                if (_didIteratorError) {
-                    throw _iteratorError;
-                }
-            }
-        }
-
-        console.log(employees);
-    })();
+    setLanguage('es');
 })();

@@ -27,7 +27,6 @@
                 var employee = _step.value;
 
                 document.querySelector('#employees tbody').appendChild(employee.getHTML());
-                console.log(employee.getHTML());
             }
         } catch (err) {
             _didIteratorError = true;
