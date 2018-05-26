@@ -1,15 +1,19 @@
 # Github
 
+![Ciclo GIT](pictures/ciclogit.PNG)
+
 ### Pasos de instalación
 
-1- git pull upstream master
+```sh
+1. git pull upstream master
 2. Trabajar en local
 3. Git add –all. O file/directory
 4. Git commit -m “…..”
 5. Git pull upstream master
-6.1 git push origin develop
-6.2 pull request
-7. Resolver conflictos manuales
+5.1 git push origin develop
+5.2 pull request
+6. Resolver conflictos manuales
+```
 
 ### Instalar:
 | Programa | Ver |
