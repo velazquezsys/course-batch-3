@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Dynamic Widges </title>
+    <body>
+
+        <div id="divOver" onmouseover="overTooltip()" onmouseleave="overTooltipOff()">
+            Pase el mouse sobre este texto por favor!
+            <span id="tooltip"> Quiobo! </span>
+        </div>
+
+    </body>
+</head>
+</html>
+
+<script text="javascript">
+
+    let element = document.getElementById("tooltip");
+    element.setAttribute('style', 'visibility: hidden;');
+
+      function overTooltip  () {
+          element.setAttribute('style', 'visibility: visible; background-color: black; color: #fff;');
+      }
+
+    function overTooltipOff  () {
+        element.setAttribute('style', 'visibility: hidden;');
+    }
+
+</script>
