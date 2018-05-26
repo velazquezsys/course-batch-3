@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+
+<html lang="es">
+
+<head>
+    <title>Widgets dinámicos</title>
+    <meta charset="utf-8" />
+    <style>
+        .first {
+            background-color: #f1f1f1;
+            padding: 10px 5px 15px 20px;
+        }
+        .ocultar {
+            display: none;
+            overflow: hidden;
+            background-color: #f15359;
+
+        }
+        .opcion {
+            padding: 10px 5px 15px 20px;
+        }
+    </style>
+</head>
+
+<body>
+<header>
+    <h1>Widgets dinámicos customizables con variables y se ejecuten con funciones.</h1>
+</header>
+<div id="principal">
+<div class="first" id="dropDown" >
+    Dropdown | Select
+</div>
+<div class="ocultar" id="opciones">
+    <div class="opcion">
+        Primera Opción
+        <hr>
+    </div>
+    <div class="opcion">
+        Segunda Opción
+        <hr>
+    </div>
+    <div class="opcion">
+        Tercera Opción
+        <hr>
+    </div>
+</div>
+<button id="launch">Launch Modal</button>
+</div>
+<div class="ocultar" id="modal" >
+    <input type="text" id="texto" value="ingresa Algo">
+    <button id="close">close</button>
+    <button id="save">save changes</button>
+</div>
+<footer>
+    Practica 25 02 2018
+</footer>
+<script src="main.js"></script>
+</body>
+</html>
