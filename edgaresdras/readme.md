@@ -1,6 +1,6 @@
 # Github
 
-![Ciclo GIT](pictures/ciclogit.png)
+![Ciclo GIT](pictures/ciclogit.PNG)
 
 ### Pasos de instalación
 
