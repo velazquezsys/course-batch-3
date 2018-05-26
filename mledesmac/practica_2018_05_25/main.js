@@ -1,6 +1,6 @@
 "use strict";
 
-const showDiv = () =>{
+const showDivSelector = () =>{
     let optionHTML = document.getElementById("optionSection");
     if(optionHTML.style.display === 'none')
         optionHTML.style.display = 'block';
@@ -9,4 +9,4 @@ const showDiv = () =>{
 }
 
 let selectHTML = document.getElementById("selectSection");
-selectHTML.addEventListener('click', showDiv)
+selectHTML.addEventListener('click', showDivSelector)
