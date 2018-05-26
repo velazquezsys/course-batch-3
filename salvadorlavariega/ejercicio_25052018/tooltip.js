@@ -1,10 +1,10 @@
 let element = document.getElementById("tooltip");
 element.setAttribute('style', 'visibility: hidden;');
 
-function overTooltip  () {
+const overTooltip = () => {
     element.setAttribute('style', 'visibility: visible; background-color: black; color: #fff;');
 }
 
-function overTooltipOff  () {
+const overTooltipOff  = () => {
     element.setAttribute('style', 'visibility: hidden;');
 }

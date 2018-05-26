@@ -14,13 +14,13 @@ idFooter.innerHTML = footer;
 
 element.setAttribute('style', 'visibility: hidden; ');
 
-function onClickOpen  () {
+const onClickOpen  = () =>  {
     element.setAttribute('style', 'visibility: visible;  background-color: #ffffff;');
     element.setAttribute('class', 'modal');
     container.setAttribute('class', 'container');
 }
 
-function onClickClose  () {
+const onClickClose   = () =>  {
     element.setAttribute('style', 'visibility: hidden;');
     container.removeAttribute("class");
 }
