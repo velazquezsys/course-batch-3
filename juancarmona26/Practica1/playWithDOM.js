@@ -10,6 +10,7 @@ let modal;
 let btn;
 let span;
 let btnModalClose;
+let elems;
 getHTMLElements();
 
 function getHTMLElements(){
@@ -17,7 +18,8 @@ function getHTMLElements(){
     divOptionValues = document.getElementById('optionValue');
     modal = document.getElementById('myModal');
     btn = document.getElementById("myBtn");
-    span = document.getElementsByClassName("close")[0];   
+    span = document.getElementsByClassName("close")[0];
+    elems = document.getElementsByClassName('quick-tip'); 
 
 }
 
@@ -41,8 +43,7 @@ function createOptionsInOptionMenuDiv() {
 
 };
 
-function setValue(value) {
-    console.log("si entra")
+function setValue(value) {    
     const textElement = document.getElementById('demo');
     textElement.innerHTML = value;   
     divOptionMenu.style.display = 'block';
@@ -69,3 +70,42 @@ window.onclick = function(event) {
         modal.style.display = "none";
     }
 }
+
+function doTip(e){    
+    const elem = e.target;    
+    if(elem.getAttribute('data-tip-on')  === 'false') {
+      elem.setAttribute('data-tip-on', 'true');
+      const rect = elem.getBoundingClientRect();          
+      const tipId = Math.random().toString(36).substring(7);
+      elem.setAttribute('data-tip-id', tipId);
+      const tip = document.createElement("div");
+      tip.setAttribute('id', tipId);
+      tip.innerHTML = elem.getAttribute('data-tip');
+      tip.style.top = rect.bottom+ 10 + 'px';
+      tip.style.left = (rect.left-200) + 'px';
+      tip.setAttribute('class','tip-box');
+      document.body.appendChild(tip);
+
+    } else {
+        
+        elem.setAttribute('data-tip-on', 'false');
+        const tip = document.getElementById(elem.getAttribute('data-tip-id'));
+        tip.parentNode.removeChild(tip);
+      
+      
+    }    
+}
+
+
+function enableTips(){
+  
+  for(const iterable of elems) {
+    iterable.addEventListener("mouseover", doTip, false);
+    iterable.addEventListener("mouseout", doTip);
+
+  }
+}
+
+   window.onload = function(){
+        enableTips();
+    }
