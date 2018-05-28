@@ -1,29 +1,13 @@
-
-
 'use strict';
 
 const arrayOfDinosaurus = ['allosaurus', 'brontosaurus', 'carcharodontosaurus','diplodocus'];
 const value = 'value';
-let divOptionMenu;
-let divOptionValues;
-let modal;
-let btn;
-let span;
-let btnModalClose;
-let elems;
-getHTMLElements();
-
-function getHTMLElements(){
-    divOptionMenu = document.getElementById('optionMenu');
-    divOptionValues = document.getElementById('optionValue');
-    modal = document.getElementById('myModal');
-    btn = document.getElementById("myBtn");
-    span = document.getElementsByClassName("close")[0];
-    elems = document.getElementsByClassName('quick-tip'); 
-
-}
-
-
+const divOptionMenu = document.getElementById('optionMenu');
+const divOptionValues = document.getElementById('optionValue');
+const modal = document.getElementById('myModal');;
+const btn = document.getElementById("myBtn");
+const span = document.getElementsByClassName("close")[0];
+const elems = document.getElementsByClassName('quick-tip');
 
 function createOptionsInOptionMenuDiv() {
 
@@ -34,9 +18,9 @@ function createOptionsInOptionMenuDiv() {
         option.setAttribute(value, iterable);
         const textNode = document.createTextNode(iterable);
         option.appendChild(textNode);
-        option.addEventListener("click", function() {
+        option.addEventListener("click", () => {
             setValue(iterable);
-          });
+        });
         divOptionValues.appendChild(option);      
         divOptionMenu.style.display = "none";                
     }
@@ -71,8 +55,8 @@ window.onclick = function(event) {
     }
 }
 
-function doTip(e){    
-    const elem = e.target;    
+function doTip(elem){        
+    
     if(elem.getAttribute('data-tip-on')  === 'false') {
       elem.setAttribute('data-tip-on', 'true');
       const rect = elem.getBoundingClientRect();          
@@ -99,9 +83,13 @@ function doTip(e){
 
 function enableTips(){
   
-  for(const iterable of elems) {
-    iterable.addEventListener("mouseover", doTip, false);
-    iterable.addEventListener("mouseout", doTip);
+  for(const iterable of elems) {    
+    iterable.addEventListener("mouseover", () => {
+        doTip(iterable);
+    }, false);
+    iterable.addEventListener("mouseout", () => {
+        doTip(iterable);
+    });
 
   }
 }
