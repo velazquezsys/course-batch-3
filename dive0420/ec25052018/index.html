@@ -4,56 +4,45 @@
 
 <head>
     <title>Widgets dinámicos</title>
-    <meta charset="utf-8" />
-    <style>
-        .first {
-            background-color: #f1f1f1;
-            padding: 10px 5px 15px 20px;
-        }
-        .ocultar {
-            display: none;
-            overflow: hidden;
-            background-color: #f15359;
-
-        }
-        .opcion {
-            padding: 10px 5px 15px 20px;
-        }
-    </style>
+    <meta charset="utf-8"/>
+    <link rel="stylesheet" type="text/css" href="estilos.css">
 </head>
 
 <body>
-<header>
-    <h1>Widgets dinámicos customizables con variables y se ejecuten con funciones.</h1>
-</header>
 <div id="principal">
-<div class="first" id="dropDown" >
-    Dropdown | Select
-</div>
-<div class="ocultar" id="opciones">
-    <div class="opcion">
-        Primera Opción
-        <hr>
+    <div class="first" id="dropDown">
+        Dropdown | Select
     </div>
-    <div class="opcion">
-        Segunda Opción
-        <hr>
+    <div class="ocultar" id="opciones">
+        <div class="opcion">
+            Primera Opción
+            <hr>
+        </div>
+        <div class="opcion">
+            Segunda Opción
+            <hr>
+        </div>
+        <div class="opcion">
+            Tercera Opción
+            <hr>
+        </div>
     </div>
-    <div class="opcion">
-        Tercera Opción
-        <hr>
+    <button id="launch">Launch Modal</button>
+    <div class="tootip" id="tooltip">Hover over me <span class="tooltipText" id="tooltipText">tooltip</span></div>
+</div>
+<div class="todo" id="todo">
+    <div class="centrar" id="modal">
+        <div class="headerDiv" id="headerDiv">
+            Header
+        </div>
+        <div class="bodyDiv" id="bodyDiv">
+
+        </div>
+        <div class="footerDiv" id="footerDiv">
+            <button id="close">close</button>
+        </div>
     </div>
 </div>
-<button id="launch">Launch Modal</button>
-</div>
-<div class="ocultar" id="modal" >
-    <input type="text" id="texto" value="ingresa Algo">
-    <button id="close">close</button>
-    <button id="save">save changes</button>
-</div>
-<footer>
-    Practica 25 02 2018
-</footer>
 <script src="main.js"></script>
 </body>
 </html>
