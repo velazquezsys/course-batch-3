@@ -1,5 +1,5 @@
-const element = document.getElementById("options");
-const title = document.getElementById("selected");
+const element = document.getElementById('options');
+const title = document.getElementById('selected');
 
 element.setAttribute('style', 'visibility: hidden; ');
 
