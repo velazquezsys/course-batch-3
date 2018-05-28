@@ -1,12 +1,12 @@
-let element = document.getElementById('modalDiv');
-let container = document.getElementById('container');
-let idHeader = document.getElementById('header');
-let idBody = document.getElementById('body');
-let idFooter = document.getElementById('footer');
+const element = document.getElementById('modalDiv');
+const container = document.getElementById('container');
+const idHeader = document.getElementById('header');
+const idBody = document.getElementById('body');
+const idFooter = document.getElementById('footer');
 
-let header = 'Javascript';
-let body = 'JavaScript (abreviado comúnmente JS) es un lenguaje de programación interpretado, dialecto del estándar ECMAScript. Se define como orientado a objetos,3​ basado en prototipos, imperativo, débilmente tipado y dinámico.';
-let footer = 'fuente: https://es.wikipedia.org/wiki/JavaScript';
+const header = 'Javascript';
+const body = 'JavaScript (abreviado comúnmente JS) es un lenguaje de programación interpretado, dialecto del estándar ECMAScript. Se define como orientado a objetos,3​ basado en prototipos, imperativo, débilmente tipado y dinámico.';
+const footer = 'fuente: https://es.wikipedia.org/wiki/JavaScript';
 
 idHeader.innerHTML = header;
 idBody.innerHTML = body;

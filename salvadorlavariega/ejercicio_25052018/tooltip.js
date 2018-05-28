@@ -1,4 +1,4 @@
-let element = document.getElementById("tooltip");
+const element = document.getElementById("tooltip");
 element.setAttribute('style', 'visibility: hidden;');
 
 const overTooltip = () => {
