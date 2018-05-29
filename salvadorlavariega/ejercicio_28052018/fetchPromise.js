@@ -6,12 +6,12 @@ const idHeader  = document.getElementById('header');
 const idBody    = document.getElementById('body');
 const idFooter  = document.getElementById('footer');
 
-const idNombre  = document.getElementById('nombre');
-const idCorreo  = document.getElementById('correo');
-const idGenero  = document.getElementById('genero');
-const idCalle   = document.getElementById('calle');
-const idCiudad  = document.getElementById('ciudad');
-const idEstado  = document.getElementById('estado');
+const idName    = document.getElementById('name');
+const idEmail   = document.getElementById('email');
+const idGender  = document.getElementById('gender');
+const idStreet  = document.getElementById('street');
+const idCity    = document.getElementById('city');
+const idState   = document.getElementById('state');
 
 const header = 'Random User';
 const footer = 'https://randomuser.me/api/';
@@ -29,15 +29,15 @@ const onClickOpen  = () =>  {
     fetch('https://randomuser.me/api/')
         .then((res) => { return res.json() })
         .then((data) => {
-            idNombre.innerHTML = getName(data.results[0]);
-            idCorreo.innerHTML = data.results[0].email;
-            idGenero.innerHTML = data.results[0].gender;
-            idCalle.innerHTML = data.results[0].location.street;
-            idCiudad.innerHTML = data.results[0].location.city;
-            idEstado.innerHTML = data.results[0].location.state;
+            idName.innerHTML    = getName(data.results[0]);
+            idEmail.innerHTML   = data.results[0].email;
+            idGender.innerHTML  = data.results[0].gender;
+            idStreet.innerHTML  = data.results[0].location.street;
+            idCity.innerHTML    = data.results[0].location.city;
+            idState.innerHTML   = data.results[0].location.state;
         })
         .catch((error) => {
-            idHeader.innerHTML = "Error al consultar Usuario Random.";
+            idHeader.innerHTML = "Error to get User.";
             idBody.innerHTML = error.message;
         });
 }
