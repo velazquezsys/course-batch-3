@@ -16,8 +16,8 @@ const getUsers = () => {
 
 const renderTable = (info) =>{
     for(const iterable of info){
-        const fila = `<tr><td>${iterable.email}</td><td>${iterable.name.first} ${iterable.name.last}</td><td><img src="${iterable.picture.thumbnail}"></td></tr>`;
-        itemTable.innerHTML += fila;
+        const row = `<tr><td>${iterable.email}</td><td>${iterable.name.first} ${iterable.name.last}</td><td><img src="${iterable.picture.thumbnail}"></td></tr>`;
+        itemTable.innerHTML += row;
     }
 };
 
