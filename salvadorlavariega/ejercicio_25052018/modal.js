@@ -25,9 +25,9 @@ const onClickClose   = () =>  {
     container.removeAttribute("class");
 }
 
-window.addEventListener('click', (e) => {
-    if (!document.getElementById('modalDiv').contains(e.target)
-        && !document.getElementById('btnOpenModal').contains(e.target)){
+window.addEventListener('click', (event) => {
+    if (!document.getElementById('modalDiv').contains(event.target)
+        && !document.getElementById('btnOpenModal').contains(event.target)){
         onClickClose();
     }
 });
