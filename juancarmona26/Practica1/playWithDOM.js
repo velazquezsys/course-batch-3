@@ -9,11 +9,10 @@ const btn = document.getElementById("myBtn");
 const span = document.getElementsByClassName("close")[0];
 const elems = document.getElementsByClassName('quick-tip');
 
-function createOptionsInOptionMenuDiv() {
+const createOptionsInOptionMenuDiv = () =>{
 
     for(const iterable of arrayOfDinosaurus) {
-      
-        
+              
         const option = document.createElement('OPTION');
         option.setAttribute(value, iterable);
         const textNode = document.createTextNode(iterable);
@@ -27,7 +26,7 @@ function createOptionsInOptionMenuDiv() {
 
 };
 
-function setValue(value) {    
+const setValue = (value) => {    
     const textElement = document.getElementById('demo');
     textElement.innerHTML = value;   
     divOptionMenu.style.display = 'block';
@@ -36,26 +35,26 @@ function setValue(value) {
     
 };
 
-function closeModal() {
+const closeModal = () => {
     modal.style.display = "none";
 }
 
-btn.onclick = function() {
+btn.onclick = () => {
     modal.style.display = "block";
 }
 
-span.onclick = function() {
+span.onclick = () => {
     modal.style.display = "none";
 };
 
 
-window.onclick = function(event) {
+window.onclick = (event) => {
     if (event.target == modal) {
         modal.style.display = "none";
     }
 }
 
-function doTip(elem){        
+const doTip = (elem) =>{        
     
     if(elem.getAttribute('data-tip-on')  === 'false') {
       elem.setAttribute('data-tip-on', 'true');
@@ -81,7 +80,7 @@ function doTip(elem){
 }
 
 
-function enableTips(){
+const enableTips = () => {
   
   for(const iterable of elems) {    
     iterable.addEventListener("mouseover", () => {
@@ -94,6 +93,6 @@ function enableTips(){
   }
 }
 
-   window.onload = function(){
+   window.onload = () =>{
         enableTips();
     }
