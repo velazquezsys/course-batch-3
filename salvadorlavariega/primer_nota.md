@@ -10,11 +10,12 @@ lsa cuales enumeramos de esta forma:
 6.2. hacer pull request
 7. Resolver conflictos manualmente
 
+[![N|Solid](gitCicle.png)]
 ---
 ### Sistema de tags para versionar Software X.Y.Z
 | Tag | Significado |
 | ------ | ------ |
-| X |  **Major** para cambios publicos, se modifican o eliminan funcionalidades| 
+| X |  **Major** para cambios publicos, se modifican o eliminan funcionalidades|
 | Y |  **Minor** para cambios nuevos |
 | Z |  **Patch** soluciones de bugs, |
 
@@ -24,6 +25,3 @@ lsa cuales enumeramos de esta forma:
 1.2.0
 3.4.5
 7.2344.42323
-
-
-
