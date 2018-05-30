@@ -15,7 +15,6 @@ class Http {
     }
 
     get(url) {
-        console.log('get called');
         return this.request(url, null);
     }
 }

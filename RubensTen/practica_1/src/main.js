@@ -10,7 +10,6 @@ class Main {
             this.generarTabla(empleados);
         }, (error) => {
             alert('Error al obtener empleados');
-            console.error(error);
         });
     }
 
@@ -20,11 +19,11 @@ class Main {
         const tblBody = document.createElement("tbody");
 
         
-        for(let e in listaEmpleados) {
+        for(const empleado in listaEmpleados) {
             let hilera = document.createElement("tr");
             let celda = document.createElement("td");
             let textoCelda = document.createTextNode(
-                'Email: ' + listaEmpleados[e].email
+                'Email: ' + listaEmpleados[empleado].email
             );
             celda.appendChild(textoCelda);
             hilera.appendChild(celda);
