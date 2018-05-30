@@ -16,7 +16,6 @@ class User {
     for (let i = 0; i < numberOfUsers; i++) {
         fetch(urlApi)
             .then(response => {
-                console.log(response)
                 return response.json();
             })
             .then(responseJson => {
@@ -24,11 +23,10 @@ class User {
                 return new User(responseObject.gender, responseObject.name.first, responseObject.email);
             })
             .then(user => {
-                console.log(user)
                 fillTable(user);
             })
             .catch(response => {
-                console.error(response);
+                return response;
             });
     }
 })();
