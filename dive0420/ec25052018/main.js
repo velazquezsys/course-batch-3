@@ -27,11 +27,11 @@ dropDown.addEventListener('click',  (event) => {
 });
 
 const clickOption = () => {
-    let i;
-    for (i = 0; i < options.length; i++) {
-        options[i].addEventListener('click', function () {
-            dropDown.innerText = this.innerText;
-            this.parentElement.style.display = 'none';
+    let index;
+    for (index = 0; index < options.length; index++) {
+        options[index].addEventListener('click',  (event) => {
+            dropDown.innerText = event.srcElement.innerText;
+            event.srcElement.parentElement.style.display = 'none';
             dropDown.style.display = 'block';
         });
     }
@@ -46,6 +46,7 @@ launch.addEventListener('click', (event) => {
 close.addEventListener('click', (event) => {
     modal.style.display = 'none';
     principal.style.display = 'block';
+    modalContainer.style.display = 'none'
 });
 
 modalContainer.addEventListener('click', (event) => {
