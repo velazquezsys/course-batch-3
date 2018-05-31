@@ -31,16 +31,16 @@ const promise = () => {
 
 const fillTable = (users) => {
     let tblBody = document.createElement("tbody");
-    for(let i = 0; i < users.length; i++){
+    for(let index = 0; index < users.length; index++){
         let row = document.createElement("tr");
         let columName = document.createElement("td");
-        columName.appendChild(document.createTextNode(users[i].name.first));
+        columName.appendChild(document.createTextNode(users[index].name.first));
         row.appendChild(columName);
         let columLastName = document.createElement("td");
-        columLastName.appendChild(document.createTextNode(users[i].name.last));
+        columLastName.appendChild(document.createTextNode(users[index].name.last));
         row.appendChild(columLastName);
         let columCell = document.createElement("td");
-        columCell.appendChild(document.createTextNode(users[i].cell));
+        columCell.appendChild(document.createTextNode(users[index].cell));
         row.appendChild(columCell);
         tblBody.appendChild(row);
     }
@@ -48,13 +48,13 @@ const fillTable = (users) => {
 }
 
 
-close.addEventListener('click', (e) => {
+close.addEventListener('click', (event) => {
     modal.style.display = 'none';
     modalContainer.style.display = 'none';
 });
 
-modalContainer.addEventListener('click', (e) => {
-    if(modalContainer == e.target){
+modalContainer.addEventListener('click', (event) => {
+    if(modalContainer == event.target){
         modalContainer.style.display = 'none'
         modal.style.display = 'none';
     }
