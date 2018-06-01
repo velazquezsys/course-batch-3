@@ -7,10 +7,10 @@ const closeButtonHTML = document.getElementById('closeButtonModal');
 
 const doFetchMau = (urlAddress) => {
     return fetch(urlAddress)
-        .then(function (res) {
+        .then( res => {
             return res.json();
         })
-        .then(function (response) {
+        .then( response => {
             let htmlResponse = (response.results);
             for (const person of htmlResponse) {
                 const column = `<tr><td>${person.email}</td><td>${person.name.first}</td><td>${person.name.last}</td></tr>`;
@@ -32,7 +32,7 @@ const showDivModal = () => {
 };
 
 const closeModal = () => {
-    const modalHTML = document.getElementById("modalWindow");
+    const modalHTML = document.getElementById('modalWindow');
     modalHTML.style.display = 'none';
     flagModal = false;
 };
