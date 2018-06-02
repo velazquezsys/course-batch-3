@@ -28,7 +28,7 @@ const test_parametro_correcto = () => {
 }
 
 const test_parametro_entero_negativo = () => {
-    const parameter = '';
+    const parameter = -2;
     const result_factorial = factorial(parameter);
     expect(result_factorial, {error: '002', message : 'Parameter not >= 0');
 }
