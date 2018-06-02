@@ -1,11 +1,11 @@
 const dropDown = document.getElementById('dropDown');
 const launch = document.getElementById('launch');
-const opciones = document.getElementsByClassName('opcion');
+const options = document.getElementsByClassName('opcion');
 const modal = document.getElementById('modal');
 const bodyDiv = document.getElementById('bodyDiv');
 const close = document.getElementById('close');
 const principal = document.getElementById('principal');
-const todo = document.getElementById('todo');
+const modalContainer = document.getElementById('modalContainer');
 
 bodyDiv.innerText = `Un texto es una composición de signos codificados en un sistema de escritura que forma una unidad de sentido.
                     También es una composición de caracteres imprimibles
@@ -16,7 +16,7 @@ bodyDiv.innerText = `Un texto es una composición de signos codificados en un si
                        que adquiere sentido en determinado contexto.`;
 const tooltip = document.getElementById('tooltip');
 
-dropDown.addEventListener('click',  (e) => {
+dropDown.addEventListener('click',  (event) => {
     let opcionDiv = dropDown.nextElementSibling;
     if (opcionDiv.style.display === 'block') {
         opcionDiv.style.display = 'none';
@@ -26,37 +26,38 @@ dropDown.addEventListener('click',  (e) => {
     }
 });
 
-const opcionesClick = () => {
-    let i;
-    for (i = 0; i < opciones.length; i++) {
-        opciones[i].addEventListener('click', function () {
-            dropDown.innerText = this.innerText;
-            this.parentElement.style.display = 'none';
+const clickOption = () => {
+    let index;
+    for (index = 0; index < options.length; index++) {
+        options[index].addEventListener('click',  (event) => {
+            dropDown.innerText = event.srcElement.innerText;
+            event.srcElement.parentElement.style.display = 'none';
             dropDown.style.display = 'block';
         });
     }
 }
 
-launch.addEventListener('click', (e) => {
+launch.addEventListener('click', (event) => {
     principal.style.display = 'none';
-    todo.style.display = 'block'
+    modalContainer.style.display = 'block'
     modal.style.display = 'block';
 });
 
-close.addEventListener('click', (e) => {
+close.addEventListener('click', (event) => {
     modal.style.display = 'none';
     principal.style.display = 'block';
+    modalContainer.style.display = 'none'
 });
 
-todo.addEventListener('click', (e) => {
-    if(todo == e.target){
+modalContainer.addEventListener('click', (event) => {
+    if(modalContainer == event.target){
         principal.style.display = 'block';
-        todo.style.display = 'none'
+        modalContainer.style.display = 'none'
         modal.style.display = 'none';
     }
 })
 
-tooltip.addEventListener('mouseenter', (e) => {
+tooltip.addEventListener('mouseenter', (event) => {
     let tooltipText = document.getElementById('tooltipText');
     tooltipText.style.visibility = 'visible';
     tooltipText.style.width = '120px';
@@ -69,10 +70,10 @@ tooltip.addEventListener('mouseenter', (e) => {
     tooltipText.style.zIndex = '1';
 });
 
-tooltip.addEventListener('mouseleave', (e) => {
+tooltip.addEventListener('mouseleave', (event) => {
     let tooltipText = document.getElementById('tooltipText');
     tooltipText.style.visibility = 'hidden';
 });
 
 
-opcionesClick();
+clickOption();
