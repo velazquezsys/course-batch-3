@@ -1,9 +1,9 @@
 'use strict';
 
-const table = document.getElementById("userTable");
+const table = document.getElementById('userTable');
 const modal = document.getElementById('myModal');
 const modalText = document.getElementById('modalText');
-const span = document.getElementsByClassName("close")[0];
+const span = document.getElementsByClassName('close')[0];
 
 
 const url = 'https://randomuser.me/api/';
@@ -14,8 +14,8 @@ const getRandomUsers = () => {
         if (response.status !== 200) {
           console.log('Looks like there was a problem. Status Code: ' +
             response.status);
-            modalText.innerHTML = "Error al realizar la petición, CODE ERROR: " + response.status;
-                modal.style.display = "block";
+            modalText.innerHTML = 'Error al realizar la petición, CODE ERROR: ' + response.status;
+                modal.style.display = 'block';
           return;
         }
 
@@ -25,8 +25,8 @@ const getRandomUsers = () => {
             .then(user => {
                 console.log('ya jalo: ' + user);
                 for(const i in user.results){
-                    console.log("valores: " + user.results[i].gender);
-                    const userData = [ user.results[i].name.first , 
+                    console.log('valores: ' + user.results[i].gender);
+                    const userData = [ user.results[i].name.first, 
                                     user.results[i].name.last, 
                                     user.results[i].gender];
                     console.log(userData);
@@ -44,15 +44,15 @@ const getRandomUsers = () => {
             })
             .catch(error => {
                 console.log('Rejected');
-                modalText.innerHTML = "Error al procesar los datos."
-                modal.style.display = "block";
+                modalText.innerHTML = 'Error al procesar los datos.'
+                modal.style.display = 'block';
             });
         });
       }
     ).catch(error => {
       console.log('Fetch Error :-S', error);
-      modalText.innerHTML = "Error al realizar la petici&oacute;n, ERROR: " +error;
-      modal.style.display = "block";
+      modalText.innerHTML = 'Error al realizar la petici&oacute;n, ERROR: ' +error;
+      modal.style.display = 'block';
     });
             
 }
@@ -71,11 +71,11 @@ const callPromiseToFillTable = (user) => {
 };
 
 const closeModal = () => {
-    modal.style.display = "none";
+    modal.style.display = 'none';
 }
 
 span.onclick = () => {
-    modal.style.display = "none";
+    modal.style.display = 'none';
 };
 
 
