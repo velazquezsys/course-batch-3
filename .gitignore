@@ -1,6 +1,10 @@
 .idea/
+**/node_modules/
+./gQuezada/practica2/lib/
 RubensTen/practica_2/node_modules
 RubensTen/practica_1/node_modules
 RubensTen/practica_2/lib
 mledesmac/practica_2018_06_04/node_modules
 mledesmac/practica_2018_06_04/package-lock.json
+**/yarn.lock
+
