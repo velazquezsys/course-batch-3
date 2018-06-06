@@ -4,8 +4,8 @@
   "description": "Login request",
   "main": "index.js",
   "scripts": {
-    "build": "./node_modules/.bin/babel src -d lib",
-    "memo": "echo hola"
+    "build": "babel",
+    "babel": "babel src -d lib"
   },
   "author": "Guillermo Quezada Martínez",
   "devDependencies": {

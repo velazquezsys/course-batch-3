@@ -1,18 +1,17 @@
-let setLanguage = (language) => {
-    let xhr = new XMLHttpRequest();
-    xhr.open("GET", "data/"+language+".json");
+const setLanguage = (language) => {
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', 'data/'+language+'.json');
     xhr.onload = () => {
         if (xhr.status >= 200 && xhr.status < 300) {
-            console.log(xhr.response);
-            let response = JSON.parse(xhr.response);
-            let template = 
+            const response = JSON.parse(xhr.response);
+            const template =
             `
                 <nav class="navbar navbar-expand-lg navbar-light bg-light">
                     <a class="navbar-brand" href="#">${response.header}</a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
-                    
+
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav mr-auto">
                         <li class="nav-item active">
@@ -56,10 +55,8 @@ let setLanguage = (language) => {
                     </div>
                 </section>
             `
-            let body = document.querySelector('body');
+            const body = document.querySelector('body');
             body.innerHTML=template;
-        } else {
-            console.log(xhr.statusText);
         }
     };
 

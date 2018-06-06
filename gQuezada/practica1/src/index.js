@@ -12,14 +12,14 @@
       let employees = [];
 
       content.results.forEach((element) ()=> {
-         let e = new Employee(element.name.first,
+         let employee = new Employee(element.name.first,
             element.email, element.phone, element.cell,
             element.login.sha256);
-         employees.push(e);
+         employees.push(employee);
       });
 
 
-      for (let employee of employees) {
+      for (const employee of employees) {
          document.querySelector('#employees tbody').appendChild(employee.getHTML());
       }
 

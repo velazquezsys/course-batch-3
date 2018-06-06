@@ -2,8 +2,8 @@
 'use strict';
 
 
-let sort = require('../src/index');
-let assert = require('chai').assert;
+const sort = require('../src/index');
+const assert = require('chai').assert;
 
 
 describe('Shell algorithm', () => {
