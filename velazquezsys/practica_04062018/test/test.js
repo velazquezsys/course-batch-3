@@ -5,31 +5,31 @@ const fibonacci = require('../src/index.js');
 
 
 it('Mayor a 0', function () {
-    const numero_repetciones = -1;
+    const number_of_repetitions = -1;
     const result = 'Se requieren valores iguales o mayores a 0';
-    expect(fibonacci(numero_repetciones)).to.equal(result);
+    expect(fibonacci(number_of_repetitions)).to.equal(result);
 });
 
 it('Tipo numerico', function () {
-    const numero_repetciones = 'a';
+    const number_of_repetitions = 'a';
     const result = 'Se requiere un valor numerico';
-    expect(fibonacci(numero_repetciones)).to.equal(result);
+    expect(fibonacci(number_of_repetitions)).to.equal(result);
 });
 
 it('Cero repeticiones', function () {
-    const numero_repetciones = 0;
+    const number_of_repetitions = 0;
     const result = '0';
-    expect(fibonacci(numero_repetciones)).to.equal(result);
+    expect(fibonacci(number_of_repetitions)).to.equal(result);
 });
 
 it('Una repeticion', function () {
-    const numero_repetciones = 0;
+    const number_of_repetitions = 0;
     const result = '0';
-    expect(fibonacci(numero_repetciones)).to.equal(result);
+    expect(fibonacci(number_of_repetitions)).to.equal(result);
 });
 
 it('Serie de 4 repeticiones', function () {
-    const numero_repetciones = 4;
+    const number_of_repetitions = 4;
     const result = '0,1,1,2';
-    expect(fibonacci(numero_repetciones)).to.equal(result);
+    expect(fibonacci(number_of_repetitions)).to.equal(result);
 });
