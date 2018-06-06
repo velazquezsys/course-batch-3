@@ -2,7 +2,7 @@
 
 const factorial = (parameter, acumulador = 1) => {
     if(!Number.isInteger(parameter)){
-        return {error: '001', message : 'Parameter not is number integer'};
+        return {error: '001', message : 'Parameter is not a integer number'};
     }
     if(parameter < 0){
         return {error: '002', message : 'Parameter not >= 0'};
