@@ -4,3 +4,4 @@
 RubensTen/practica_2/node_modules
 RubensTen/practica_1/node_modules
 RubensTen/practica_2/lib
+**/yarn.lock
