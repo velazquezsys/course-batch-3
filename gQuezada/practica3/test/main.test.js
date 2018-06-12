@@ -1,20 +1,14 @@
-const sort = require('../src/index');
+const main = require('../src/main');
 const assert = require('chai').assert;
 
-
-describe('Shell algorithm', () => {
-    it('Sorting an array ordered', () => {
-      const A = [1,2,3,4,5];
-      assert.deepEqual(sort(A), [1,2,3,4,5]);
+describe('HTML parser', () => {
+    it('El archivo no existe. Regresa una cadena vacia', () => {
+      const content = main.readFile('./inputs/example4.html');
+      assert.equal(content, '');
     });
 
-    it('Sorting a simple array', () => {
-      const A = [5,4,3,2,1];
-      assert.deepEqual(sort(A), [1,2,3,4,5]);
-    });
-
-    it('Sorting an array with negative values', () => {
-      const A = [5,-2,3,2,1];
-      assert.deepEqual(sort(A), [-2, 1, 2, 3, 5]);
+    it('El archivo existe y es de texto. Regresa una cadena de texto', () => {
+      const content = main.readFile('./inputs/example1.html');
+      assert.equal(content, 'Ejemplo 1\n');
     });
 });
