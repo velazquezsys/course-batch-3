@@ -25,11 +25,12 @@ it('Valid string from bytes', () =>{
     expect(binToString([65])).to.equal('A');
 });
 
-it('The new string is the same as the original'),  () => {
+it('The new string is the same as the original',  () => {
     const original =  'A';//binToString(stringToBytes('original'));
     const compareString = 'A'; //binToString(stringToBytes('original'));
 
     expect(compareValidStrings(original,compareString)).to.equal(true);
 
-};
+
+});
 
