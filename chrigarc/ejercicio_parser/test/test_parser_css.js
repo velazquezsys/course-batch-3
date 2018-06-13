@@ -63,3 +63,41 @@ describe('Extract Mixin from CSS selector: ', () => {
         assert.equal(result_parser, expect_value);
     });
 });
+
+describe('Suite test parse CSS: ', () => {
+    it('Test nextSelector', () => {
+        const textLine = '@font-face { font-family: montserrat; src: url("../fonts/Montserrat-Regular.ttf"); font-weight: normal;} .navbar__title a{ color: white; text-decoration: none;}';
+        const expect_value = {
+            content: '@font-face { font-family: montserrat; src: url("../fonts/Montserrat-Regular.ttf"); font-weight: normal;}',
+            pending: ' .navbar__title a{ color: white; text-decoration: none;}'
+        };
+        const result = CSSParser.nextSelector(textLine);
+        assert.deepEqual(result, expect_value);
+    });
+
+    it('Test parser', () =>{
+        const textLine = '@font-face { font-family: montserrat; src: url("../fonts/Montserrat-Regular.ttf"); font-weight: normal;} .navbar__title a{ color: white; text-decoration: none; @apply --my-component-titles;}';
+        const expect = [
+            {
+                selectors: ['font-face'],
+                attributes: [
+                    {key: 'font-family', value: 'montserrat'},
+                    {key: 'src', value: 'url("../fonts/Montserrat-Regular.ttf")'},
+                    {key: 'font-weight', value: 'normal'}
+                ],
+                mixin: ''
+            },
+            {
+                selectors: ['.navbar__title', 'a'],
+                attributes: [
+                    {key: 'color', value: 'white'},
+                    {key: 'text-decoration', value: 'none'},
+                    {key: 'font-weight', value: 'normal'}
+                ],
+                mixin: '-my-component-titles'
+            }
+        ];
+        const result = CSSParser.extract(textLine);
+        assert.deepEqual(result, expect);
+    });
+});

@@ -3,39 +3,58 @@ const assert = require('chai').assert;
 const HTMLParser = require('../HTMLParser');
 
 describe('Tags validations: ', () => {
+    
     it('valid tag', () => {
         const textLine = '<div data-item="data1" data-value="value1"></div>';
-        const expect_value = true;
         const result_parser = HTMLParser.isValidTag(textLine);
-        assert.equal(result_parser, expect_value);
+        assert.isTrue(result_parser);
     });
 
     if('valid tag witout close tag', () =>{
         const textsLines = ['<br />', '<input type="text" name="" />'];
-        const expect_value = true;
         let result_parser = false;
         for(const textLine of textsLines){
             result_parser = HTMLParser.isValidTag(textLine);
-            assert.equal(result_parser, expect_value);
+            assert.isTrue(result_parser);
         }
     });
 
     it('Invalid tag', () => {
         const textLine = '<novalid data-item="data1" data-value="value1"></novalid>';
-        const expect_value = false;
         const result_parser = HTMLParser.isValidTag(textLine);
-        assert.equal(result_parser, expect_value);
+        assert.isFalse(result_parser);
     });
 
     it('start tag without close tag', () => {
         const textLine = '<div data-item="data1" data-value="value1">Foo</novalid>';
-        const expect_value = false;
         const result_parser = HTMLParser.isValidTag(textLine);
-        assert.equal(result_parser, expect_value);
+        assert.isFalse(result_parser);
     });
 });
 
 describe('Test Parser: ', () => {
+
+    it('Test get HTML tag', () =>{
+        const textLine = '<div data-value="value1">text1<p>foo</p></div><div>text2</div>';
+        const expect_value = {
+            HTMLTag: '<div data-value="value1">',
+            content: 'text1<p>foo</p>',
+            pending: '<div>text2</div>'
+        };
+        const result = HTMLParser.nextHTMLTag(textLine);
+        assert.deepEqual(result, expect_value);
+    });
+
+    it('Test get HTML tag in TextLine that starts with text', () =>{
+        const textLine = 'Lorem ipsum<div data-value="value1">text1<p>foo</p></div><div>text2</div>';
+        const expect_value = {
+            HTMLTag: '<div data-value="value1">',
+            content: 'text1<p>foo</p>',
+            pending: '<div>text2</div>'
+        };
+        const result = HTMLParser.nextHTMLTag(textLine);
+        assert.deepEqual(result, expect_value);
+    });
 
     it('Tree generation of elements of a valid text line', () => {
         const textLine = '<html><head><title></title></head><body style="color:red;"><div><h1>Title 1</h1><p>Hello World</p></div></body></html>';
