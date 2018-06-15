@@ -6,72 +6,70 @@ const CSSParser = require('../CSSParser');
 describe('Attributes extract style from html tag: ', () => {
     it('html tag with style attribute', () => {
         const textLine = '<div data-item="data1" data-value="value1" style="display:initial; color: black"></div>';
-        const expect_value = [
-            {
+        const expect_value = {
                 selectors: ['div'],
                 attributes: [
                     {key: 'display', value: 'initial'},
                     {key: 'color', value: 'black'},
                 ],
                 mixin: ''
-            }
-        ];
+            };
         const result_parser = CSSParser.parserFromHTMLTag(textLine);
         assert.deepEqual(result_parser, expect_value);
     });
 });
 
-describe('Extract Selectors array style from CSS selector: ', () => {
-    it('test Array selector', () => {
+describe('Extract Rules array style from CSS rule: ', () => {
+    it('test Array rule', () => {
         const textLine = '.navbar__title a{ color: white; text-decoration: none;}';
         const expect_value = ['.navbar__title', 'a'];
-        const result_parser = CSSParser.getArrayNameSelectors(textLine);
+        const result_parser = CSSParser.getArrayNameRules(textLine);
         assert.deepEqual(result_parser, expect_value);
     });
 });
 
-describe('Extract Attributtes style from CSS selector: ', () => {
-    it('CSS selector with attributes', () => {
+describe('Extract Attributtes style from CSS rule: ', () => {
+    it('CSS rule with attributes', () => {
         const textLine = '@font-face { font-family: montserrat; src: url("../fonts/Montserrat-Regular.ttf"); font-weight: normal;}';
         const expect_value = [
             {key: 'font-family', value: 'montserrat'},
             {key: 'src', value: 'url("../fonts/Montserrat-Regular.ttf")'},
             {key: 'font-weight', value: 'normal'},
         ];
-        const result_parser = CSSParser.getAttributesFromCSSSelector(textLine);
+        const result_parser = CSSParser.getAttributesFromCSSRule(textLine);
         assert.deepEqual(result_parser, expect_value);
     });
-    it('CSS selector without attributes', () => {
+    it('CSS rule without attributes', () => {
         const textLine = '@font-face {}';
         const expect_value = [];
-        const result_parser = CSSParser.getAttributesFromCSSSelector(textLine);
+        const result_parser = CSSParser.getAttributesFromCSSRule(textLine);
         assert.deepEqual(result_parser, expect_value);
     });
 });
 
-describe('Extract Mixin from CSS selector: ', () => {
-    it('CSS selector with mixin', () => {
+describe('Extract Mixin from CSS rule: ', () => {
+    it('CSS rule with mixin', () => {
         const textLine = '@font-face { @apply --my-component-titles; }';
         const expect_value = '--my-component-titles';
-        const result_parser = CSSParser.getMixinFromCSSSelector(textLine);
+        const result_parser = CSSParser.getMixinFromCSSRule(textLine);
         assert.equal(result_parser, expect_value);
     });
-    it('CSS selector without mixin', () => {
+    it('CSS rule without mixin', () => {
         const textLine = '@font-face {}';
         const expect_value = '';
-        const result_parser = CSSParser.getMixinFromCSSSelector(textLine);
+        const result_parser = CSSParser.getMixinFromCSSRule(textLine);
         assert.equal(result_parser, expect_value);
     });
 });
 
 describe('Suite test parse CSS: ', () => {
-    it('Test nextSelector', () => {
+    it('Test nextRule', () => {
         const textLine = '@font-face { font-family: montserrat; src: url("../fonts/Montserrat-Regular.ttf"); font-weight: normal;} .navbar__title a{ color: white; text-decoration: none;}';
         const expect_value = {
             content: '@font-face { font-family: montserrat; src: url("../fonts/Montserrat-Regular.ttf"); font-weight: normal;}',
             pending: ' .navbar__title a{ color: white; text-decoration: none;}'
         };
-        const result = CSSParser.nextSelector(textLine);
+        const result = CSSParser.nextRule(textLine);
         assert.deepEqual(result, expect_value);
     });
 
@@ -79,7 +77,7 @@ describe('Suite test parse CSS: ', () => {
         const textLine = '@font-face { font-family: montserrat; src: url("../fonts/Montserrat-Regular.ttf"); font-weight: normal;} .navbar__title a{ color: white; text-decoration: none; @apply --my-component-titles;}';
         const expect = [
             {
-                selectors: ['font-face'],
+                selectors: ['@font-face'],
                 attributes: [
                     {key: 'font-family', value: 'montserrat'},
                     {key: 'src', value: 'url("../fonts/Montserrat-Regular.ttf")'},
@@ -92,9 +90,8 @@ describe('Suite test parse CSS: ', () => {
                 attributes: [
                     {key: 'color', value: 'white'},
                     {key: 'text-decoration', value: 'none'},
-                    {key: 'font-weight', value: 'normal'}
                 ],
-                mixin: '-my-component-titles'
+                mixin: '--my-component-titles'
             }
         ];
         const result = CSSParser.extract(textLine);
