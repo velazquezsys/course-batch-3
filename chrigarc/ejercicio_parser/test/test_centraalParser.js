@@ -19,7 +19,7 @@ describe('Test IO Files: ', () => {
 
 describe('Test HTML/CSS Parser: ', () => {
     it('Test HTML file without style attributes', () => {
-        const filename = '../tests_files/content.html';
+        const filename = './tests_files/content.html';
         const content = central.openFile(filename);
         const result = central.parseHTML(content);
         const expect = JsonFiles.getDummy('content');
@@ -27,7 +27,7 @@ describe('Test HTML/CSS Parser: ', () => {
     });
 
     it('Test CSS file', () => {
-        const filename = '../tests_files/styles.css';
+        const filename = './tests_files/style.css';
         const content = central.openFile(filename);
         const result = central.parseCSS(content);
         const expect = JsonFiles.getDummy('styles');
@@ -35,7 +35,7 @@ describe('Test HTML/CSS Parser: ', () => {
     });
 
     it('Test HTML file with style attributes', () => {
-        const filename = '../tests_files/full.html';
+        const filename = './tests_files/full.html';
         const content = central.openFile(filename);
         const result = central.parseFULL(content);
         const expect = JsonFiles.getDummy('full html');
