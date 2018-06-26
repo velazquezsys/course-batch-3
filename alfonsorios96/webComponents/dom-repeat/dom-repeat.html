@@ -1,0 +1,47 @@
+<script>
+  ((customElements, document) => {
+    'use strict';
+
+    class DomRepeat extends HTMLElement {
+
+      constructor() {
+        super();
+      }
+
+      connectedCallback() {
+        this._templatize();
+      }
+
+      get items() {
+        return JSON.parse(this.getAttribute('items'));
+      }
+
+      set items(newValue) {
+        this.setAttribute('items', JSON.stringify(newValue));
+      }
+
+      static get observedAttributes() {
+        return [ 'items' ];
+      }
+
+      attributeChangedCallback(name, oldValue, newValue) {
+        switch (name) {
+          case 'items':
+            console.log(`Value changed from ${oldValue} to ${newValue}`);
+            break;
+        }
+      }
+
+      _templatize() {
+        const shadowRoot = this.attachShadow({mode: 'open'});
+        const template = document.querySelector('dom-repeat template');
+        for (const item of this.items) {
+          const contentNodes = document.importNode(template.content, true);
+          shadowRoot.appendChild(contentNodes);
+        }
+      }
+    }
+
+    customElements.define('dom-repeat', DomRepeat);
+  })(window.customElements, document);
+</script>
