@@ -1,3 +1,7 @@
+<template>
+    <slot></slot>
+</template>
+
 <script>
   ((customElements, document) => {
     'use strict';
@@ -13,7 +17,7 @@
       }
 
       get items() {
-        return JSON.parse(this.getAttribute('items'));
+        return this._validateInputData(this.getAttribute('items'));
       }
 
       set items(newValue) {
@@ -27,18 +31,53 @@
       attributeChangedCallback(name, oldValue, newValue) {
         switch (name) {
           case 'items':
-            console.log(`Value changed from ${oldValue} to ${newValue}`);
+            const template = this.querySelector('template');
+            this._render(template.parentNode.childNodes);
             break;
+        }
+      }
+
+      _validateInputData(stringData) {
+        const array = JSON.parse(stringData);
+        if (Array.isArray(array) === true) {
+          return array;
+        } else {
+          throw new Error('The data for items must be array');
         }
       }
 
       _templatize() {
         const shadowRoot = this.attachShadow({mode: 'open'});
-        const template = document.querySelector('dom-repeat template');
-        for (const item of this.items) {
-          const contentNodes = document.importNode(template.content, true);
-          shadowRoot.appendChild(contentNodes);
+        const template = document.currentScript.ownerDocument.querySelector('template');
+        const templateContent = document.importNode(template.content, true);
+        shadowRoot.appendChild(templateContent);
+
+        const slot = this.shadowRoot.querySelector('slot');
+        const nodes = slot.assignedNodes();
+
+        this._render(nodes);
+      }
+
+      _render(nodes) {
+        for (const node of nodes) {
+          if (node.localName === 'template') {
+            const htmlTemplate = node.innerHTML;
+            this.shadowRoot.innerHTML = this._bindData(htmlTemplate);
+            this.dispatchEvent(new CustomEvent('dom-changed', {
+              bubbles: true,
+              composed: true
+            }));
+            break;
+          }
         }
+      }
+
+      _bindData(html) {
+        let htmlStringRendered = '';
+        for (const item of this.items) {
+          htmlStringRendered += html.replace('[[item]]', item);
+        }
+        return htmlStringRendered;
       }
     }
 
