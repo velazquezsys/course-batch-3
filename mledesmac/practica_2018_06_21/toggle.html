@@ -51,7 +51,7 @@
 
     <label class="switch">
         <input type="checkbox">
-        <span class="slider"></span>
+        <span class="slider" id="test"></span>
     </label>
 </template>
 
@@ -63,18 +63,25 @@
 
             constructor() {
                 super();
+
+
+            }
+
+            connectedCallback() {
                 const shadowRoot = this.attachShadow({mode: 'open'});
                 let toggleButton =  document.currentScript.ownerDocument.getElementById('toggleTemplate').content;
                 shadowRoot.appendChild(toggleButton);
+                console.log(shadowRoot.hasChildNodes());
 
-                let label = this.shadowRoot.querySelector('.slider');
+                let label = shadowRoot.querySelector('.slider');
+                let test = shadowRoot.querySelector('#test');
+                console.log(test);
                 label.addEventListener('click', () => {
-                        this.dispatchEvent(new CustomEvent('show-event', {
-                            bubbles: true,
-                            composed: true
-                        }));
+                    this.dispatchEvent(new CustomEvent('show-event', {
+                        bubbles: true,
+                        composed: true
+                    }));
                 });
-
             }
         }
 
